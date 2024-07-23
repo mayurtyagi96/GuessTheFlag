@@ -96,9 +96,15 @@ struct ContentView: View {
             scoreTitle = "Wrong"
             score -= 1
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+        // using modern swift concurrency...
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
             showingScore = true
         }
+        // using Dispatch queue...
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+//            showingScore = true
+//        }
     }
     func askQuestion(){
         btnIndex = nil
